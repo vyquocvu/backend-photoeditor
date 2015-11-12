@@ -1,0 +1,19 @@
+<% provide(:title, @user.name) %>
+<div class ="container" style="padding-top:80px">
+  <div class="row">
+    <aside class="col-md-12">
+      <section class="user_info" style="padding-top:40px;padding-left:40px">
+        <% flash.each do |message_type, message| %>
+            <div class="alert alert-<%= message_type %>"><%= message %></div>
+          <% end %>
+        <h1>
+          <%= gravatar_for @user %>
+          <%= link_to "#{@user.name}", edit_info_path %>
+        </h1>
+        <h2>
+        This site show all image , silde!
+        </h2>
+      </section>
+    </aside>
+  </div>
+</div>

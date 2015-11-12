@@ -2,6 +2,23 @@
 <html>
   <head>
     <title>Photo Editor</title>
+
+  	<meta charset="UTF-8">
+
+  	<link rel="stylesheet" href="style/button.css">
+  	<link rel="stylesheet" href="style/editor-style.css">
+  	<link rel="stylesheet" href="style/style.css">
+  <!--
+  	<link rel="stylesheet" href="font/font-awesome.css">
+  	 -->
+
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+  	<!-- jQuery library -->
+  	<script src="js/jquery-1.11.3.min.js"></script>
+  	<script src="script/frame.js"></script>
+  	<script src="script/dragDrop.js"></script>
+  	<script src="script/addText.js"></script>
     <%= stylesheet_link_tag 'application', media: 'all',
                                            'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -10,8 +27,6 @@
       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
       </script>
     <![endif]-->
-	<meta charset="UTF-8">
-	<title>PuPic Editor Mainpage</title>
 
 	<link rel="stylesheet" href="style/style.css">
 	<link rel="stylesheet" href="style/button.css">
@@ -102,18 +117,18 @@
     	position: absolute;
     	z-index: 1001;
     	top: 10px;
-        margin-left: 10px;
+        margin-left: 100px;
         display: block;
     	background-repeat: no-repeat;
-    	width: 180px;
-    	height: 180px;
+    	width: 150px;
+    	height: 150px;
     	background-size: contain;
     	z-index: 2000;
     	color: transparent;
     }
     a#logo:hover {
-    	width: 190px;
-    	height: 190px;
+    	width: 160px;
+    	height: 160px;
 
     	-webkit-transition: all 0.3s ease;
         -moz-transition: all 0.3s ease;
@@ -127,25 +142,20 @@
   </head>
   <body>
     <header class="main">
-  		<div class="container" class="navbar" style="height:100%;">
+  		<div class="navbar" style="height:100%;">
   			<nav role="navigation" style="height:100%;">
   				<div>
-  				<% if logged_in? %>
-  					<%= link_to "PuPic", current_user, id: "logo" %>
-  				<% else %>
   					<%= link_to "PuPic", root_path, id: "logo" %>
-  				<% end %>
-
   				</div>
   				<ul id="row-center"style=" margin-left:20%;">
-  					<li class="menu-item" style="width:15%;"><a href="<%=root_path %>#about-landing"> About me</a></li>
-  					<li class="menu-item" style="width:15%;"><a href="<%=root_path %> #feedback-landing"> Feedback</a></li>
-  					<li class="menu-item" style="width:15%;"><a href="<%=root_path %> #mobile-landing"> Mobile app</a></li>
-  					<li class="menu-item" style="width:15%"><a href="<%=root_path %>#contact-landing"> Contact</a></li>
+  					<li class="menu-item" style="width:20%;"><a href="<%=root_path %>#about-landing"> About me</a></li>
+  					<li class="menu-item" style="width:20%;"><a href="<%=root_path %>#feedback-landing"> Feedback</a></li>
+  					<li class="menu-item" style="width:20%;"><a href="<%=root_path %>#mobile-landing"> Mobile app</a></li>
+  					<li class="menu-item" style="width:20%"><a href="<%=root_path %>#contact-landing"> Contact</a></li>
             <% if logged_in? %>
-              <li class="menu-item" style="width:15%;" ><%= link_to "Log out", logout_path, method: "delete" %></li>
+              <li class="menu-item" style="width:20%;" ><%= link_to "Log out", logout_path, method: "delete" %></li>
             <% else %>
-            	<li class="menu-item" style="width:15%;" ><%= link_to "Log in", login_path %></li>
+            	<li class="menu-item" style="width:20%;" ><%= link_to "Log in", login_path %></li>
             <% end %>
   				</ul>
   			</nav>

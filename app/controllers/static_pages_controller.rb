@@ -4,4 +4,8 @@ class StaticPagesController < ApplicationController
 
   def help
   end
+
+  def editer
+    @user = current_user
+  end
 end

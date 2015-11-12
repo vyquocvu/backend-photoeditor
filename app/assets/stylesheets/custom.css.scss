@@ -3,9 +3,11 @@
 /* forms */
 
 input, textarea, select, .uneditable-input {
-  border: 1px solid #bbb;
+  border: 1px solid #000;
+  background-color: #FFF;
   width: 100%;
   margin-bottom: 15px;
+  margin-top: 15px;
 }
 
 input {

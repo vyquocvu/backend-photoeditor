@@ -127,6 +127,16 @@ document.getElementById('inserttext').addEventListener("keydown",insertText);
 			a.attr('download', namFile);
 
 	});
+	 $("#save_on_server").click(function(){
+		console.log("....x:"+xCoor+"..y:"+yCoor+"..w:"+wSize+"..h:"+hSize);
+		var can = document.getElementById('canvas');
+		var dataURL = can.toDataURL();
+		$('#base64').val(dataURL);
+		console.log(dataURL);
+		confirm('Are you sure , save image!');
+	});
+
+
 	$('span.button-icon').bind('click', function (){
 		console.log("button click");
 		var toolId = this.id;

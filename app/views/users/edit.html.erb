@@ -1,0 +1,24 @@
+<% provide(:title, "Log in") %>
+<div class="container">
+
+  <div class="row" style="margin-top:100px;">
+
+    <div class="col-md-6 col-md-offset-3" >
+      <h1>Update </h1>
+        <%= form_for(:user, url: update_path) do |f| %>
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'form-control', value: @user.name  %>
+
+        <%= f.label :email %>
+        <%= f.email_field :email, class: 'form-control', value: @user.email %>
+
+        <%= f.label :New_password %>
+        <%= f.password_field :password, class: 'form-control' %>
+        <%= f.label :password_confirmation %>
+
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+        <%= f.submit "Update", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
