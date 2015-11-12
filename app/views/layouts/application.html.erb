@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Photo Editor</title>
+    <%= stylesheet_link_tag 'application', media: 'all',
+                                           'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
+      </script>
+    <![endif]-->
+	<meta charset="UTF-8">
+	<title>PuPic Editor Mainpage</title>
+
+	<link rel="stylesheet" href="style/style.css">
+	<link rel="stylesheet" href="style/button.css">
+
+	<!-- Latest compiled and minified CSS -->
+<!--
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	 -->
+	<link rel="stylesheet" href="style/bootstrap/bootstrap.min.css">
+
+	<!-- jQuery library -->
+<!--
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	 -->
+	<script src="js/jquery-1.11.3.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+<!--
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	 -->
+	<script src="js/bootstrap-3.3.5.min.js"></script>
+	<script src="js/jquery-1.10.2.min.js"></script>
+
+	<!--
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	 -->
+	<script src="js/jquery-1.9.1.min.js"></script>
+  <!-- End SlidesJS Required -->
+
+  <!-- SlidesJS Required: Link to jquery.slides.js -->
+  <script src="jquery.slides.min.js"></script>
+  <!-- End SlidesJS Required -->
+
+  <!-- SlidesJS Required: Initialize SlidesJS with a jQuery doc ready -->
+  <script>
+    $(function() {
+      $('#slides').slidesjs({
+        width: 940,
+        height: 528,
+        play: {
+          active: true,
+          auto: true,
+          interval: 4000,
+          swap: true
+        }
+      });
+    });
+  </script>
+  <script>
+    $(function() {
+      $('#under-slider-text').slidesjs({
+        width: 940,
+        height: 528,
+        play: {
+          active: true,
+          auto: true,
+          interval: 4000,
+          swap: true
+        }
+      });
+    });
+  </script>
+	<script>
+	  $(document).ready(function(){
+		$('a[href^="#"]').on('click',function (e) {
+		    e.preventDefault();
+
+		    var target = this.hash;
+		    var $target = $(target);
+
+		    $('html, body').stop().animate({
+		        'scrollTop': $target.offset().top
+		    }, 900, 'swing', function () {
+		        window.location.hash = target;
+		    });
+		});
+	});
+	</script>
+  <style>
+    blockquote{
+    	font-family: "Roboto Slab";
+    	font-size: 16px;
+    	border-left: none;
+    }
+    a#logo {
+    	background-image: url("pic/pp_logo_tee_women_tight1.png");
+    	position: absolute;
+    	z-index: 1001;
+    	top: 10px;
+        margin-left: 10px;
+        display: block;
+    	background-repeat: no-repeat;
+    	width: 180px;
+    	height: 180px;
+    	background-size: contain;
+    	z-index: 2000;
+    	color: transparent;
+    }
+    a#logo:hover {
+    	width: 190px;
+    	height: 190px;
+
+    	-webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+    }
+    li.menu-item a:hover{
+    	font-size: 30px;
+    }
+	</style>
+  </head>
+  <body>
+    <header class="main">
+  		<div class="container" class="navbar" style="height:100%;">
+  			<nav role="navigation" style="height:100%;">
+  				<div>
+  				<% if logged_in? %>
+  					<%= link_to "PuPic", current_user, id: "logo" %>
+  				<% else %>
+  					<%= link_to "PuPic", root_path, id: "logo" %>
+  				<% end %>
+
+  				</div>
+  				<ul id="row-center"style=" margin-left:20%;">
+  					<li class="menu-item" style="width:15%;"><a href="<%=root_path %>#about-landing"> About me</a></li>
+  					<li class="menu-item" style="width:15%;"><a href="<%=root_path %> #feedback-landing"> Feedback</a></li>
+  					<li class="menu-item" style="width:15%;"><a href="<%=root_path %> #mobile-landing"> Mobile app</a></li>
+  					<li class="menu-item" style="width:15%"><a href="<%=root_path %>#contact-landing"> Contact</a></li>
+            <% if logged_in? %>
+              <li class="menu-item" style="width:15%;" ><%= link_to "Log out", logout_path, method: "delete" %></li>
+            <% else %>
+            	<li class="menu-item" style="width:15%;" ><%= link_to "Log in", login_path %></li>
+            <% end %>
+  				</ul>
+  			</nav>
+  			<hr class="bottom-dashed">
+  		</div>
+	  </header>
+    <% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>
