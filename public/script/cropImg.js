@@ -11,6 +11,7 @@ $("#crop").click(function(){
 	if(cStep !=0){
 		console.log("enable...");
 		$('#canvas').data('Jcrop').enable();
+		$('.jcrop-holder').css('visibility', 'visible');
 
 	}
 	cStep = 1;
@@ -34,7 +35,7 @@ $("#btnApplyFormCrop").click(function(){
 	yCoor = (can.height - chCrop)/2;
 	wSize = cwCrop;
 	hSize = chCrop;
-	console.log(" crop "+xCoor+"========================="+ yCoor);
+	// console.log(" crop "+xCoor+"========================="+ yCoor);
 	imgTemp.src =  can.toDataURL();
 	sizetemp.src  =	imgTemp.src ;
   h = 0;
@@ -42,15 +43,23 @@ $("#btnApplyFormCrop").click(function(){
 });
 $("#btnCancelFormCrop").click(function(){
 	$('#canvas').data('Jcrop').disable();
+	$('.jcrop-holder').css('visibility', 'hidden');
 	$( "#cropForm" ).toggle( "blind", {}, 100 );
 });
-$('#resizebar').mousemove(function() {
+$('#resizebar').change(function() {
 	var sizebase = $('#resizebar').val() / 100;
 	if(sizetemp.src  =="" ){
-		sizetemp.src = imgTemp.src;
+		sizetemp.src = can.toDataURL();
+		// console.log("srcimgtemp:"+imgTemp.src);
+		// console.log("canURL:"+can.toDataURL());
+
 	}
+
 	ctx.clearRect(0, 0, can.width, can.height);
+		// console.log("sizetemp:"+sizetemp.src);
+		// console.log("canURL:"+can.toDataURL());
 	ctx.drawImage(sizetemp,can.width *(1-sizebase)/2 ,can.height  *(1-sizebase)/2 ,can.width * sizebase,can.height * sizebase);
+
 		if(img.height >=can.height || img.width >= can.width ){
 			xCoor = can.width *(1-sizebase)/2;
 			yCoor = can.height *(1-sizebase)/2;
@@ -65,8 +74,9 @@ $('#resizebar').mousemove(function() {
 		}
 		wSize = w * sizebase;
 		hSize = h * sizebase;
-		console.log(" resize "+xCoor+"=="+ yCoor+"=="+wSize +"=="+hSize );
+
 	imgTemp.src =  can.toDataURL();
+	console.log("canURL:"+can.toDataURL());
 });
 
 function updatePreview(c) {

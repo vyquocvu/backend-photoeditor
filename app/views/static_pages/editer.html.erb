@@ -1,38 +1,40 @@
 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
 	<div id="menu" class="blue">
 	<hr class="top-horizontal-dashed">
 	<div id="left-menu">
-		<!--<ul>-->
-		<!--	<li><i class="fa fa-check"></i>Apply</li>-->
-		<!--	<li><i class="fa fa-times"></i>Cancel</li>-->
-		<!--	<li><i class="fa fa-refresh"></i>Original</li>-->
-		<!--	<li><i class="fa fa-columns"></i>Compare</li>-->
-		<!--</ul>-->
 	</div>
 	<div id="right-menu">
 		<ul>
 			<table>
 				<tr>
 					<td>
-						<li><span id="open">Open</span><input type="file" id="imgFile" style="display:none"></li>
+						<a id="open" title="Choose Image"style="font-size:18px;padding-right:10px"><i class="fa fa-folder-open"></i> Open </a><input type="file" id="imgFile" style="display:none"></li>
 					</td>
 					<td>
-						<li><a id="save" style="text-decoration:none;color:#000;margin-left:20px" >Download</a></li>
+						<!--<li><a id="save" title="Save In Computer" style="font-size:18px;padding-right:10px"><i class="fa fa-download"></i> Download </a></li>-->
 					</td>
 					<td>
-						<li>
-							<%= form_for(:image, url: save_image_path) do |f| %>
-								<%= f.hidden_field :base64, id: "base64" %>
-								<%= f.hidden_field :user, value: @user.id %>
+						<%= form_for(:image, url: print_path) do |f| %>
+							<%= f.hidden_field :base64, id: "base64" %>
+							<%= f.hidden_field :user, value: @user.id  if !@user.nil?%>
+							<li>
+								<%= f.submit "Print", style: "background:none;border:none;", id: 'save_on_server' ,target: "_blank" %>
+							</li>
+						<% end %>
+					</td>
+					<td>
+						<%= form_for(:image, url: save_image_path) do |f| %>
+							<%= f.hidden_field :base64, id: "base64" %>
+							<%= f.hidden_field :user, value: @user.id  if !@user.nil?%>
+							<li>
 								<%= f.submit "Save", style: "background:none;border:none;", id: 'save_on_server' %>
-							<% end %>
-						</li>
+							</li>
+						<% end %>
 					</td>
 				</tr>
 			</table>
-
-
-			<!--<li><span id="share">Share</span></li>-->
 		</ul>
 	</div>
 	<hr class="bottom-horizontal-dashed">
@@ -48,12 +50,7 @@
 				<p class="fa fa-scissors"></p>
 			</span>
 		</li>
-		<!--<li>-->
-		<!--	<span class="tool-name">Effects</span>-->
-		<!--	<span class="button-icon" id="effects">-->
-		<!--		<p class="fa fa-paint-brush"></p>-->
-		<!--	</span>-->
-		<!--</li>-->
+
 		<li>
 			<span class="tool-name">Stickers</span>
 			<span class="button-icon" id="stickers">
@@ -130,7 +127,7 @@
 				</form>
 			</div>
 		</li>
-		<li>
+		<li >
 			Crop
 			<i class="fa fa-chevron-down" id="crop"></i>
 			<div id="cropForm">
@@ -140,14 +137,7 @@
 			</form>
 			</div>
 		</li>
-		<!--<li id="liRotate">Rotate-->
-		<!--	<i class="fa fa-chevron-down"></i>-->
-		<!--	<div id="rotateForm">-->
 
-		<!--	</div>-->
-		<!--</li>-->
-		<!--<li>Basics-->
-		<!--	<i class="fa fa-chevron-down"></i></li>-->
 
 		<li>Resize
 			<i class="fa fa-chevron-down"></i>
@@ -198,20 +188,22 @@
 			</a>
 			</li>
 		</ul>
-		<input type="button" id="btnApplyFormFrame" value="Apply">
-		<input type="button" id="btnCancelFormFrame" value="Cancel">
+
 		</div>
 		</li>
 
-		<!-- <li>Textures<i class="fa fa-chevron-down"></i></li></li>
-		<li>Neon<i class="fa fa-chevron-down"></i></li></li>
-		<li>Crystal<i class="fa fa-chevron-down"></i></li></li> -->
+
 	</ul>
 	<div id="devide-dashed" style="height:516px; border-right: 1px dashed rgba(255, 255, 255, 0.25);border-left: 1px dashed rgba(0, 0, 0, 0.25);top:4px;left:156px;position:absolute;"></div>
 	</div>
 
 	<!-- </aside> -->
+
 	<div id="workplace">
+	<div id="big-open-combonent">
+			<div><img src="pic/folder_desktop.png" alt=""></div>
+			<div id="big-open">Open</div>
+		</div>
 	<canvas id = "canvas" ondrop="drop(event)" ondragover="allowDrop(event)" width = "1025.230" height = "520">
 		<img src="" id="selectImg" />
 	</canvas>

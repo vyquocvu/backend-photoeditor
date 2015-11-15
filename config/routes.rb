@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   post '/save_image' => 'images#new'
   post '/update' => 'users#update'
   get '/edit' => 'static_pages#editer'
+  post '/print' => 'images#print_img'
   get '/start' => 'users#start_now'
   get 'signup'  => 'users#new'
   get    'login'   => 'sessions#new'

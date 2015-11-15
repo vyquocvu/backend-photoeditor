@@ -1,8 +1,10 @@
-<% provide(:title, @user.name) %>
-<div class ="container" style="padding-top:80px">
-  <div class="row">
-    <aside class="col-md-12">
-      <section class="user_info" style="padding-top:40px;padding-left:40px">
+  <link rel="stylesheet" type="text/css" href="style/demo.css" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+	<script type="text/javascript" src="js/modernizr.custom.53451.js"></script>
+
+<div class="container" style="padding-top:70px">
+  <div>
+    <section class="user_info"  >
         <% flash.each do |message_type, message| %>
             <div class="alert alert-<%= message_type %>"><%= message %></div>
           <% end %>
@@ -10,10 +12,26 @@
           <%= gravatar_for @user %>
           <%= link_to "#{@user.name}", edit_info_path %>
         </h1>
-        <h2>
-        This site show all image , silde!
-        </h2>
-      </section>
-    </aside>
+    </section>
   </div>
+	<section id="dg-container" class="dg-container">
+		<div class="dg-wrapper">
+		<% @img.each do |img| %>
+			  <a href="#"><img src="<%=img.location %>" alt="Img" style="width:481px;height:301px;"><div>http://www.Pupiceditor.it/</div></a>
+      <% end %>
+		</div>
+		<nav>
+			<span class="dg-prev">&lt;</span>
+			<span class="dg-next">&gt;</span>
+		</nav>
+	</section>
 </div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.gallery.js"></script>
+<script type="text/javascript">
+$(function() {
+		$('#dg-container').gallery({
+		  autoplay	:	true
+		});
+			});
+</script>

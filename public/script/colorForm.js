@@ -3,7 +3,7 @@
 	$(".slider").change(function(){
 
 		if (savedData.length > 0) {
-			console.log("///x:"+xCoor+"..y:"+yCoor+"..w:"+wSize+"..h:"+hSize);
+
 			var imgData = savedData.pop();
 			ctx.putImageData(imgData, xCoor, yCoor);
 				// console.log("leng2:"+savedData.length);
@@ -21,7 +21,7 @@
 
 	   	// overlay filled rectangle using lighter composition
 	   //	ctx.globalCompositeOperation = "lighter";
-	   	ctx.globalAlpha = 0.5;
+	   	ctx.globalAlpha = 0.8;
 	   	ctx.fillStyle = "rgb("+red+","+green+","+blue+")"  ;
 	   	ctx.fillRect(xCoor,yCoor,wSize,hSize);
 
@@ -53,7 +53,7 @@ $("#btnCancelDialogColor").click(function(){
 			// map = ctx.getImageData(0, 0, img.width, img.height);
 			ctx.putImageData(init,xCoor,yCoor);
 			if(checkOk == 1){
-				console.log("r :"+r+"g :"+g+"b :"+b);
+				// console.log("r :"+r+"g :"+g+"b :"+b);
 				ctx.fillStyle = "rgb("+r+","+g+","+b+")"  ;
 			}
 			ctx.fillRect(xCoor,yCoor,wSize,hSize);
@@ -62,7 +62,7 @@ $("#btnCancelDialogColor").click(function(){
 		$( "#colorForm" ).toggle( "blind", {}, 100 );
 	});
 $("#btnSaveColor").click(function(){
-
+	imgTemp.src = can.toDataURL();
 	$( "#colorForm" ).toggle( "blind", {}, 100 );
 
 });

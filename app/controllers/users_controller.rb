@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
 
   def info
-    @user = current_user
+    if logged_in?
+      @user = current_user
+      @img = Image.where(:user_id =>  current_user.id)
+    else
+      redirect_to login_path
+    end
   end
 
   def new
@@ -12,12 +17,8 @@ class UsersController < ApplicationController
     if logged_in?
       @user = current_user
     else
-      redirect_to signup_path
+      redirect_to login_path
     end
-  end
-
-  def save_image
-    byebug
   end
 
   def update
@@ -36,7 +37,7 @@ class UsersController < ApplicationController
     if logged_in?
       redirect_to info_path
     else
-      redirect_to signup_path
+      redirect_to login_path
     end
   end
 

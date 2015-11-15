@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Print Order form</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="style/editor-style.css">
+	<link rel="stylesheet" href="style/form-style.css">
+
+	<link rel="shortcut icon" href="pic/favicon.ico">
+	<link rel="stylesheet" href="style/bootstrap/bootstrap.min.css">
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="script/form.js"></script>
+
+
+	<style>
+		input[type="text"], input[type="number"], input[type="email"], textarea#message {
+			width: 100%;
+			float: left;
+			margin-left: 10%;
+			padding-left: 7px;
+		}
+
+	</style>
+</head>
+<body class="grey" >
+	<div id="form-background" class="container" style="height:100vh;position:relative;">
+		<div id='myForm' class="row" style="height:100vh;padding-top: 100px;">
+			<div class="col-md-6 pink halfside" style="height:100%;">
+				<div class="head section-title"><h3>Please fill in the following information</h3></div>
+				<form action="">
+					<table class="left-table">
+						<tr>
+							<td style="text-align: right;">Your name:</td>
+							<td>
+							<input type="text" id="name" value="<%= @user.name %>">
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align: right;">Your email:</td>
+							<td><input type="email" id="mail" value="<%= @user.email %>"></td>
+						</tr>
+						<tr>
+							<td style="text-align: right;">Size: </td>
+							<td>
+								<table>
+								<tr>
+										<td><input type="radio" name="size" value="small" checked onclick="cal();" ></td>
+										<td><span> Small </span></td>
+								</tr><tr>
+										<td><input type="radio" name="size" value="medium" onclick="cal();" ></td>
+										<td><span> Medium </span></td>
+								</tr><tr>
+										<td><input type="radio" name="size" value="big" onclick="cal();"></td>
+										<td><span> Big </span></td>
+								</tr></table>
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align: right;">Number of copies</td>
+							<td><input type="number" id="num" value="1" onChange="cal();"></td>
+						</tr>
+						<tr>
+							<td style="text-align: right;"> <h3 id="price"> Price: 100 </h3>  </td>
+						</tr>
+					</table>
+				</form>
+			</div>
+			<div class="col-md-6 pink" style="height:100%">
+				<!-- <div class="head section-title"><h3>Your Order</h3></div> -->
+				<div id="order" class="section-content text-center">
+					<img src="<%=@img.last.location%>" id="imgprint" style="padding-top:80px;height:100%;width:100%" />
+					<p id="result"></p>
+
+				</div>
+				<div id="bottom-button">
+					<input id="btnCancel2" type="button" class="button" value="Cancel" onclick="location.href='https://html-vyquocvu-1.c9.io';" >
+					<input id="btnAgree" type="button" class="button" value="Agree"  onclick="agree();">
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+<script src="script/form.js"></script>
+<script src="script/menu.js"></script>
+<script>
+	function cal(){
+		var vals = document.getElementsByName("size");
+		for (i = 0; i < 3 ; i++) {
+			if(vals[i].checked) {
+				var n = document.getElementById('num').value;
+				var p = document.getElementById('price');
+				var i = document.getElementById('imgprint');
+				p.innerHTML =  "Price: "+ n*100*(i+1);
+				i.setAttribute("style","padding-top:80px;height:100%;width:100%");
+			}
+		}
+	}
+ function agree(){
+		console.log('print');
+		var src = "<%= @img.last.location %>"
+ 		var win=window.open(src);
+    	win.print();
+    	win.location.reload();
+}
+</script>
+</html>
