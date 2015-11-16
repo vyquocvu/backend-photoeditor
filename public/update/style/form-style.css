@@ -1,0 +1,54 @@
+
+.bottomform, .bodyform, td, tr{
+	font-family: Roboto Slab;
+	font-size: 16px;
+}
+
+td {
+	width: 50%;
+}
+tr {
+	height: 50px;
+}
+#btnCancel1, #btnAgree, #btnCancel2, #btnReview {
+	width:90px;
+	margin: 2px;
+	float:right;
+}
+.head {
+	height: 80px;
+	text-align: center;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+.halfside{
+	border-left: 1px solid rgba(0, 0, 0, 0.2);
+	border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+.left-table tbody tr td{
+	padding-right: 40px;
+}
+.text-center{
+	text-align: center;
+}
+div#order{
+	height: 410px;
+}
+td input[type=button], .pink input[type=button] {
+	float: right;
+	margin-right: 30px;
+}
+table{
+	width: 100%;
+}
+#img-review{
+	display: block;
+	height: 200px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+#bottom-button{
+	display: block;
+	height: 30px;
+	margin-right: 40px;
+}

@@ -10,14 +10,16 @@
           <% end %>
         <h1>
           <%= gravatar_for @user %>
-          <%= link_to "#{@user.name}", edit_info_path %>
+          <%= link_to "#{@user.name}", edit_info_path %> |
+          <%= link_to "Editor", edit_path %> |
+          <%= link_to "Orders", order_path %>
         </h1>
     </section>
   </div>
 	<section id="dg-container" class="dg-container">
 		<div class="dg-wrapper">
 		<% @img.each do |img| %>
-			  <a href="#"><img src="<%=img.location %>" alt="Img" style="width:481px;height:301px;"><div>http://www.Pupiceditor.it/</div></a>
+			  <a href="/update/<%= img.id %>"><img src="<%=img.location %>" alt="Img" style="width:481px;height:301px;"><div>http://www.Pupiceditor.it/</div></a>
       <% end %>
 		</div>
 		<nav>

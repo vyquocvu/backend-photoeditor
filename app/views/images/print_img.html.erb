@@ -29,12 +29,13 @@
 		<div id='myForm' class="row" style="height:100vh;padding-top: 100px;">
 			<div class="col-md-6 pink halfside" style="height:100%;">
 				<div class="head section-title"><h3>Please fill in the following information</h3></div>
-				<form action="">
+				<form >
 					<table class="left-table">
 						<tr>
 							<td style="text-align: right;">Your name:</td>
 							<td>
 							<input type="text" id="name" value="<%= @user.name %>">
+
 							</td>
 						</tr>
 						<tr>
@@ -59,7 +60,7 @@
 						</tr>
 						<tr>
 							<td style="text-align: right;">Number of copies</td>
-							<td><input type="number" id="num" value="1" onChange="cal();"></td>
+							<td><input type="number" id="num" value="1" min="1" onChange="cal();"></td>
 						</tr>
 						<tr>
 							<td style="text-align: right;"> <h3 id="price"> Price: 100 </h3>  </td>
@@ -69,14 +70,17 @@
 			</div>
 			<div class="col-md-6 pink" style="height:100%">
 				<!-- <div class="head section-title"><h3>Your Order</h3></div> -->
-				<div id="order" class="section-content text-center">
-					<img src="<%=@img.last.location%>" id="imgprint" style="padding-top:80px;height:100%;width:100%" />
+				<div id="order" class="section-content text-center" border="1">
+					<img src="<%=@img.last.location%>" id="imgprint" style="padding-top:80px;height:60%;width:60%" />
 					<p id="result"></p>
 
 				</div>
 				<div id="bottom-button">
-					<input id="btnCancel2" type="button" class="button" value="Cancel" onclick="location.href='https://html-vyquocvu-1.c9.io';" >
-					<input id="btnAgree" type="button" class="button" value="Agree"  onclick="agree();">
+					<input id="btnCancel2" type="button" class="button" value="Cancel" onclick="location.href='<%= cancel_path%>';" >
+					<%= form_for(:order, url: create_path) do |f| %>
+						<%= f.hidden_field :price, value: "100",id: "price_val" %>
+						<%= f.submit "Agree", id: "btnAgree", class: "button",  onclick: "agree();"%>
+					<% end %>
 				</div>
 			</div>
 		</div>
@@ -92,18 +96,23 @@
 			if(vals[i].checked) {
 				var n = document.getElementById('num').value;
 				var p = document.getElementById('price');
-				var i = document.getElementById('imgprint');
-				p.innerHTML =  "Price: "+ n*100*(i+1);
-				i.setAttribute("style","padding-top:80px;height:100%;width:100%");
+				var price =  n*100*(i+1)
+				p.innerHTML =  "Price: "+ price;
+
+				var priceval = document.getElementById('price_val');
+				priceval.setAttribute("value",price);
+				var img = document.getElementById('imgprint')
+				var size = 60 + i*20
+				img.setAttribute("style","padding-top:80px;height:"+ size +"%;width:"+ size +"%");
 			}
 		}
 	}
- function agree(){
+ 	function agree(){
 		console.log('print');
 		var src = "<%= @img.last.location %>"
  		var win=window.open(src);
     	win.print();
     	win.location.reload();
-}
+	}
 </script>
 </html>

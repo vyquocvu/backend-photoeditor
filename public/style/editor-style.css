@@ -157,7 +157,7 @@ div#aside-extend ul i:hover{
 	height: 80px;
 	width: 50%;
 	float: left;
-	position: relative;
+	position: absolute;
 }
 
 #left-menu ul, #right-menu ul{
@@ -210,7 +210,7 @@ hr.top-horizontal-dashed{
 	float: right;
     width: 20px;
 }
-/*
+
 #btnCancelDialogColor,#btnCancelFormCrop{
 	float: right;
 	margin-right:0;
@@ -218,11 +218,11 @@ hr.top-horizontal-dashed{
 #btnSaveColor,#btnApplyFormCrop{
 	float: left;
 	margin-right:0;
-}*/
-/*
+}
+
 #btnCancelFormCrop,#btnApplyFormCrop{
 	    margin-top: 15px;
-}*/
+}
 .jcrop-holder{
 			background-color: #e6e1d0 !important;
 			position: absolute;

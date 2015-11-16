@@ -26,8 +26,8 @@ class ImagesController < ApplicationController
 
   def cancel
     if logged_in?
-       #@img = Image.where(:user_id =>  current_user.id)
-       #@img.last.destroy
+       @img = Image.where(:user_id =>  current_user.id)
+       @img.last.destroy
        redirect_to info_path
     else
       redirect_to login_path
@@ -37,6 +37,7 @@ class ImagesController < ApplicationController
   def print_img
     if logged_in?
       @user = current_user
+      @orders = Order.new
       base64 = params[:image][:base64]
       unless base64.empty?
         data = base64

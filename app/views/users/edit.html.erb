@@ -5,12 +5,18 @@
 
     <div class="col-md-6 col-md-offset-3" >
       <h1>Update </h1>
-        <%= form_for(:user, url: update_path) do |f| %>
+        <%= form_for(:user, url: create_path) do |f| %>
         <%= f.label :name %>
         <%= f.text_field :name, class: 'form-control', value: @user.name  %>
 
         <%= f.label :email %>
         <%= f.email_field :email, class: 'form-control', value: @user.email %>
+
+        <%= f.label :phone %>
+        <%= f.text_field :phone, class: 'form-control', value: @user.phone  %>
+
+        <%= f.label :address %>
+        <%= f.text_field :address, class: 'form-control' , value: @user.address %>
 
         <%= f.label :New_password %>
         <%= f.password_field :password, class: 'form-control' %>

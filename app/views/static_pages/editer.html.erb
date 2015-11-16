@@ -1,6 +1,5 @@
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-
 	<div id="menu" class="blue">
 	<hr class="top-horizontal-dashed">
 	<div id="left-menu">
@@ -20,13 +19,13 @@
 							<%= f.hidden_field :base64, id: "base64" %>
 							<%= f.hidden_field :user, value: @user.id  if !@user.nil?%>
 							<li>
-								<%= f.submit "Print", style: "background:none;border:none;", id: 'save_on_server' ,target: "_blank" %>
+								<%= f.submit "Print", style: "background:none;border:none;", id: 'print_btn' ,target: "_blank" %>
 							</li>
 						<% end %>
 					</td>
 					<td>
 						<%= form_for(:image, url: save_image_path) do |f| %>
-							<%= f.hidden_field :base64, id: "base64" %>
+							<%= f.hidden_field :base64, id: "base" %>
 							<%= f.hidden_field :user, value: @user.id  if !@user.nil?%>
 							<li>
 								<%= f.submit "Save", style: "background:none;border:none;", id: 'save_on_server' %>
@@ -76,8 +75,8 @@
 	<hr class="top-horizontal-dashed">
 	<ul id="ul-edit">
 		<li>Colors
-			<i class="fa fa-chevron-down" id = "color"></i>
-			<div id="colorForm">
+			<i class="fa fa-chevron-down" id = "color" ></i>
+			<div id="colorForm" >
 			<form>
 				<table>
 					<tr>
@@ -127,11 +126,15 @@
 				</form>
 			</div>
 		</li>
+		<li>Resize
+			<i class="fa fa-chevron-down"></i>
+			<input id="resizebar" name="" type="range" min="0" max="100"  value="100" />
+			</li>
 		<li >
 			Crop
 			<i class="fa fa-chevron-down" id="crop"></i>
-			<div id="cropForm">
-			<form>
+			<div id="cropForm" >
+			<form style="margin-top:20px;">
 				<input id="btnCancelFormCrop" type="button" value="Cancel"  />
 				<input id="btnApplyFormCrop" type="button" value="Apply" >
 			</form>
@@ -139,10 +142,7 @@
 		</li>
 
 
-		<li>Resize
-			<i class="fa fa-chevron-down"></i>
-			<input id="resizebar" name="" type="range" min="0" max="100"  value="100" />
-			</li>
+
 	</ul>
 	<ul id="ul-effects">
 	</ul>
@@ -208,6 +208,42 @@
 		<img src="" id="selectImg" />
 	</canvas>
 
+	<% if !@img.nil? %>
+		<script>
+			var can = document.getElementById('canvas');
+			var ctx = can.getContext('2d');
+			var img =  document.getElementById('selectImg');
+			var rect = img.getBoundingClientRect();
+			var imgTemp;
+			function drawImage(imageObj) {
+				img.src = imageObj.src;
+        var imageX = 0;
+        var imageY = 0;
+        var imageWidth = imageObj.width;
+        var imageHeight = imageObj.height;
+       	ctx.drawImage(imageObj, imageX, imageY);
+        var imageData = ctx.getImageData(imageX, imageY, imageWidth, imageHeight);
+        var data = imageData.data;
+        xCoor = rect.left;
+				yCoor = rect.top;
+				wSize = can.width;
+				hSize = can.height;
+				console.log("xCoor"+ imageWidth +"yCoor"+ imageHeight +"-------"+wSize+":"+hSize);
+        imgTemp.src = can.toDataURL();
+        map = ctx.getImageData(xCoor, yCoor,wSize,hSize);
+				init = map;
+				savedData.push(map);
+				editData.push(map);
+      }
+      var imageObj = new Image();
+      imageObj.onload = function() {
+				$("#big-open-combonent").remove();
+				$("#canvas").attr("height", "520");
+        drawImage(this);
+      };
+      imageObj.src = 'https://html-vyquocvu.c9.io/<%= @img.location %>';
+		</script>
+	<% end %>
 	</div>
 
 	<script src="js/jquery-1.11.3.min.js"></script>

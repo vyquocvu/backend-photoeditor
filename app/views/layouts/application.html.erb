@@ -4,6 +4,10 @@
     <title>Photo Editor</title>
 
   	<meta charset="UTF-8">
+    <meta name="description" content="PuPic Online Photo Editor help you edit photos, apply photo effects, add frames, sticker, and text. You also can create your own account to save your edition. It's free and easy!">
+  	<meta name="application-name" content="PuPic">
+  	<meta name="keywords" content="PuPic, pupic.com, pupic photo effects, pupic photo editor, effects, editor, photo, photograph, picture, free, online, edit, editing, adjust, crop, online, online photo sharing, facebook, camera, digital, image, fix, photoshop, gimp, Photo Sharing, Share with Facebook, Share with Twitter, Share with Pinterest, share, Instant, Sketch, photo to art, text editor, online frames, overlays, Photo Effects, Photo Editor">
+
 
   	<link rel="stylesheet" href="style/button.css">
   	<link rel="stylesheet" href="style/editor-style.css">
@@ -19,10 +23,10 @@
   	<script src="script/frame.js"></script>
   	<script src="script/dragDrop.js"></script>
   	<script src="script/addText.js"></script>
-    <%= stylesheet_link_tag 'application', media: 'all',
-                                           'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= csrf_meta_tags %>
+      <%= stylesheet_link_tag 'application', media: 'all',
+                                             'data-turbolinks-track' => true %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+      <%= csrf_meta_tags %>
     <!--[if lt IE 9]>
       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
       </script>
@@ -59,25 +63,13 @@
 
   <!-- SlidesJS Required: Link to jquery.slides.js -->
   <script src="jquery.slides.min.js"></script>
+   <script src="js/jquery.min.js"></script>
   <!-- End SlidesJS Required -->
   <link rel="shortcut icon" href="pic/favicon.ico">
   <!-- SlidesJS Required: Initialize SlidesJS with a jQuery doc ready -->
 
 	<script>
-	  $(document).ready(function(){
-		$('a[href^="#"]').on('click',function (e) {
-		    e.preventDefault();
 
-		    var target = this.hash;
-		    var $target = $(target);
-
-		    $('html, body').stop().animate({
-		        'scrollTop': $target.offset().top
-		    }, 900, 'swing', function () {
-		        window.location.hash = target;
-		    });
-		});
-	});
 	</script>
   <style>
     blockquote{
@@ -90,7 +82,7 @@
     	position: absolute;
     	z-index: 1001;
     	top: 10px;
-        margin-left: 100px;
+        margin-left: 50px;
         display: block;
     	background-repeat: no-repeat;
     	width: 150px;
@@ -118,17 +110,17 @@
   		<div class="navbar" style="height:100%;">
   			<nav role="navigation" style="height:100%;">
   				<div>
-  					<%= link_to "PuPic", root_path, id: "logo" %>
+  					<a  id="logo" href="http://html-vyquocvu.c9.io">PuPic</a>
   				</div>
   				<ul id="row-center"style=" margin-left:20%;">
   					<li class="menu-item" style="width:20%;"><a href="<%=root_path %>#about-landing"> About me</a></li>
   					<li class="menu-item" style="width:20%;"><a href="<%=root_path %>#feedback-landing"> Feedback</a></li>
   					<li class="menu-item" style="width:20%;"><a href="<%=root_path %>#mobile-landing"> Mobile app</a></li>
-  					<li class="menu-item" style="width:20%"><a href="<%=root_path %>#contact-landing"> Contact</a></li>
+  					<li class="menu-item" style="width:15%"><a href="<%=root_path %>#contact-landing"> Contact</a></li>
             <% if logged_in? %>
-              <li class="menu-item" style="width:20%;" ><%= link_to "Log out", logout_path, method: "delete" %></li>
+              <li class="menu-item" style="width:15%;" ><%= link_to "Log out", logout_path, method: "delete" %></li>
             <% else %>
-            	<li class="menu-item" style="width:20%;" ><%= link_to "Log in", login_path %></li>
+            	<li class="menu-item" style="width:15%;" ><%= link_to "Log in", login_path %></li>
             <% end %>
   				</ul>
   			</nav>

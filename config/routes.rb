@@ -19,13 +19,18 @@ Rails.application.routes.draw do
   post '/update' => 'users#update'
   get '/edit' => 'static_pages#editer'
   post '/print' => 'images#print_img'
+  get '/update/:image' => 'static_pages#update_image'
   get '/start' => 'users#start_now'
+  get '/cancel' => 'images#cancel'
+  get '/order' => 'orders#show'
+  post '/create' => 'orders#create'
   get 'signup'  => 'users#new'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
   resources :users
   resources :images
+  resources :orders
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

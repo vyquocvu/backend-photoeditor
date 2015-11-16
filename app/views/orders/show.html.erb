@@ -1,0 +1,25 @@
+<div class="container" style="padding-top:170px">
+  <% if @orders.size == 0 %>
+   <h2>You don't have any oders! </h2>
+  <% else %>
+  <h2>All Orders</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th width="25%">Name</th>
+        <th width="50%">Image</th>
+        <th width="25%">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |od| %>
+        <tr>
+        <td><%= @user.name %></td>
+        <td><img src="<%= od.location %>" style="height:40%;width:80%;" /></td>
+        <td><%= od.price %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% end %>
+</div>
