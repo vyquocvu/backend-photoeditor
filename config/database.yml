@@ -12,17 +12,17 @@
 default: &default
   adapter: mysql2
   encoding: utf8
-  username: <%=ENV['C9_USER']%>
-  host: <%=ENV['IP']%>
+  username: 'dminAIaFCh5'
+  
 development:
   <<: *default
-  database: photoeditor
+  database: photo
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: photo_test
+  database: photo
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -45,6 +45,6 @@ test:
 #
 production:
   <<: *default
-  database: sample_app_production
-  username: sample_app
-  password: <%= ENV['SAMPLE_APP_DATABASE_PASSWORD'] %>
+  database: photo
+  username: 'dminAIaFCh5'
+  password: 'lKQ8i2BVEDgN'
